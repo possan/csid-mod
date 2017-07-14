@@ -1,26 +1,20 @@
-all: test testlight
+all: build/csid build/csidl
 
 clean:
-	rm -f test.o testlight.o libcsid.o libcsidlight.o csid csidl
+	rm -f build/*
 
-libcsid.o: libcsid.c
-	gcc -c libcsid.c -o libcsid.o -lm
+build/libcsidfull.o: src/libcsidfull.c include/libcsid.h
+	gcc -c src/libcsidfull.c -o build/libcsidfull.o -lm -Iinclude
 
-libcsidlight.o: libcsidlight.c
-	gcc -c libcsidlight.c -o libcsidlight.o -lm
+build/libcsidlight.o: src/libcsidlight.c include/libcsid.h
+	gcc -c src/libcsidlight.c -o build/libcsidlight.o -lm -Iinclude
 
-test.o: test.c
-	gcc -c test.c -o test.o -lm `sdl-config --cflags --libs`
+build/csid: examples/csid.c include/libcsid.h build/libcsidfull.o
+	gcc examples/csid.c build/libcsidfull.o -o build/csid -lm -Iinclude `sdl-config --cflags --libs`
 
-testlight.o: testlight.c
-	gcc -c testlight.c -o testlight.o -lm `sdl-config --cflags --libs`
+build/csidl: examples/csid.c include/libcsid.h build/libcsidlight.o
+	gcc examples/csid.c build/libcsidlight.o -o build/csidl -lm -Iinclude `sdl-config --cflags --libs`
 
-test: test.o libcsid.o
-	gcc test.o libcsid.o -o csid `sdl-config --cflags --libs` -lm
-
-testlight: testlight.o libcsidlight.o
-	gcc testlight.o libcsidlight.o -o csidl `sdl-config --cflags --libs` -lm
-
-install:
-	cp csid /usr/local/bin
-	cp csidl /usr/local/bin
+install: build/csid build/csidl
+	cp build/csid /usr/local/bin
+	cp build/csidl /usr/local/bin

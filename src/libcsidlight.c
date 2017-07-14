@@ -8,16 +8,7 @@
 #include <stdio.h>
 #include <math.h>
 
-// #include <SDL/SDL_config.h>
-// #include <SDL/SDL.h>
-// #include <SDL/SDL_audio.h>
-
-// #ifdef _MSC_VER //no sleep and usleep (unistd.h) in M$ Win... need to find an alternative
-//  void sleep(int x){}
-//  void usleep(int x){}
-// #else
-//  #include <unistd.h>
-// #endif
+#include <libcsid.h>
 
 typedef unsigned char byte;
 typedef unsigned char Uint8;
@@ -630,25 +621,25 @@ void createCombinedWF(unsigned int* wfarray, float bitmul, float bitstrength, fl
 // libcsid exported api
 //
 
-const char *libcsidlight_getauthor() {
+const char *libcsid_getauthor() {
     return (char *)&SIDauthor;
 }
 
-const char *libcsidlight_getinfo() {
+const char *libcsid_getinfo() {
     return (char *)&SIDinfo;
 }
 
-const char *libcsidlight_gettitle() {
+const char *libcsid_gettitle() {
     return (char *)&SIDtitle;
 }
 
-void libcsidlight_init(int _samplerate, int _sidmodel) {
+void libcsid_init(int _samplerate, int _sidmodel) {
   samplerate = _samplerate;
   sampleratio = round(C64_PAL_CPUCLK / samplerate);
   requested_SID_model = _sidmodel;
 }
 
-int libcsidlight_load(unsigned char *_buffer, int _bufferlen, int _subtune) {
+int libcsid_load(unsigned char *_buffer, int _bufferlen, int _subtune) {
   int readata, strend, subtune_amount, preferred_SID_model[3] = {8580.0, 8580.0, 8580.0};
   unsigned int i, datalen, offs, loadaddr;
 
@@ -738,6 +729,6 @@ int libcsidlight_load(unsigned char *_buffer, int _bufferlen, int _subtune) {
   return 0;
 }
 
-void libcsidlight_render(unsigned short *_output, int _numsamples) {
+void libcsid_render(unsigned short *_output, int _numsamples) {
   play(NULL, (Uint8 *)_output, _numsamples * 2);
 }

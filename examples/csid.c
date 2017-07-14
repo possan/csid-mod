@@ -10,10 +10,10 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_audio.h>
 
-#include "libcsidlight.h"
+#include <libcsid.h>
 
 void sdl_callback(void* userdata, unsigned char *stream, int bytes) {
-  libcsidlight_render((unsigned short *)stream, bytes / 2);
+  libcsid_render((unsigned short *)stream, bytes / 2);
 }
 
 int main (int argc, char *argv[])
@@ -26,7 +26,7 @@ int main (int argc, char *argv[])
 
   // open and process the file
   if (argc < 2) {
-    printf("\nUsage: csidl <filename.sid> [subtune_number [SID_modelnumber [seconds]]]\n\n");
+    printf("\nUsage: csid <filename.sid> [subtune_number [SID_modelnumber [seconds]]]\n\n");
     return 1;
   }
 
@@ -68,7 +68,7 @@ int main (int argc, char *argv[])
     return 2;
   }
 
-  libcsidlight_init(samplerate, sidmodel);
+  libcsid_init(samplerate, sidmodel);
 
   FILE *f = fopen(argv[1], "rb");
   if (f == NULL) {
@@ -83,11 +83,11 @@ int main (int argc, char *argv[])
   printf("\n%d bytes read (%s subtune %d)", datalen, argv[1], subtune + 1);
   fclose(f);
 
-  libcsidlight_load(filedata, datalen, subtune);
+  libcsid_load(filedata, datalen, subtune);
 
-  printf("\nTitle: %s    ", libcsidlight_gettitle());
-  printf("Author: %s    ", libcsidlight_getauthor());
-  printf("Info: %s", libcsidlight_getinfo());
+  printf("\nTitle: %s    ", libcsid_gettitle());
+  printf("Author: %s    ", libcsid_getauthor());
+  printf("Info: %s", libcsid_getinfo());
 
   SDL_PauseAudio(0);
 
