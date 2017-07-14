@@ -1,0 +1,24 @@
+music/Flash_It_Back.sid 4:29
+music/E_G_Blues_2SID.sid 5:30
+music/Conga_Beat.sid 4:10
+music/Dream_a_Little_Dream_of_Me.sid 3:06
+music/Earmind_3SID.sid 1:21
+music/Funtempo.sid 2:34
+music/Egy_Szippantas_a_jobol.sid 4:19
+music/Everydays.sid 4:25
+music/Funck_the_Metal.sid 2:28
+music/On_the_Edge.sid 1:33
+music/Garden_Party.sid 4:35
+music/Girl_from_Tomorrow_2SID.sid 0:56
+music/Irish_Dream.sid 2:16
+music/Lenore.sid 3:09
+music/Thiz_Iz_Da_Gizda_3SID.sid 2:03
+music/Loner-R_I_P_Mr_Moore.sid 3:24
+music/Magyar_Nepzenek.sid 5:22:1
+music/Mendegel_A_Mandarin.sid
+music/Outro.sid 1:32
+music/Pimp_My_Commodore.sid 3:30
+music/Rakoczi_Indulo.sid 3:32
+music/Te_vagy_az_akit_a_legjobban.sid 3:28
+music/Waterman.sid 2:13
+music/RastArok.sid 3:03
